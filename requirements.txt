@@ -1,0 +1,11 @@
+torch
+torchvision
+opencv-python
+numpy
+Flask
+Flask-CORS
+segment-anything
+Pillow
+rasterio
+earthengine-api
+pyshp==2.3.1
