@@ -2,8 +2,8 @@
 
 Geo-Segmenter is a powerful, interactive tool for segmenting objects in geospatial imagery. It combines a feature-rich web interface with the cutting-edge "Segment Anything Model" (SAM) from Meta AI, allowing for precise, prompt-based object extraction from local orthophotos, satellite imagery via Google Earth Engine, or even 3D map snapshots.
 
-![Geo-Segmenter Interface](placeholder.png)
-*(Note: Add a screenshot of the application interface here.)*
+<img width="1907" height="920" alt="image" src="https://github.com/user-attachments/assets/730c7917-89ff-4a55-86b4-be8659cdc6c2" />
+
 
 ## Key Features
 
