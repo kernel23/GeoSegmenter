@@ -138,17 +138,16 @@ Copyright © 2024 K.Tanaval
 
 ## `create_tfw.py` Script
 
-This script automatically generates a world file (e.g., `.tfw`) by extracting the existing georeferencing information from a raster file like a GeoTIFF.
+This script uses the powerful `gdal_translate` command-line tool to automatically generate a world file (e.g., `.tfw`, `.jgw`) for any georeferenced raster image supported by GDAL.
 
 ### Dependencies
 
-- Python 3
-- rasterio
+- **Python 3**
+- **GDAL**: This script requires the GDAL command-line tools to be installed on your system and accessible from the command line (i.e., in your system's PATH).
 
-Install the required dependency with:
-```bash
-pip install rasterio
-```
+To install GDAL, please visit the official website for instructions: [https://gdal.org/download.html](https://gdal.org/download.html)
+
+You can verify your installation by running `gdal_translate --version` in your terminal.
 
 ### Usage
 
@@ -164,8 +163,8 @@ The script will offer two processing modes:
     *   The full path to your georeferenced image (e.g., a GeoTIFF).
     *   The directory where you want to save the generated world file.
 
-2.  **Batch Folder Mode**: Choose this to process all TIFF images in a specific folder. The script will ask for:
-    *   The path to the folder containing your `.tif` or `.tiff` images.
+2.  **Batch Folder Mode**: Choose this to process all supported images in a specific folder. The script will ask for:
+    *   The path to the folder containing your georeferenced images.
     *   The path to the folder where all the generated world files should be saved.
 
-The script will then automatically read each image's metadata and create the corresponding `.tfw` file in the specified output location. It will skip any images that are not georeferenced.
+The script will then use `gdal_translate` to create a world file for each image in the folder. It will notify you if GDAL encounters any errors (e.g., if an image is not georeferenced).
