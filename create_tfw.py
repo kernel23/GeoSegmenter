@@ -72,9 +72,8 @@ def create_tfw_with_gdal(image_path, output_dir):
     except Exception as e:
         print(f"--> ERROR: An unexpected error occurred with '{os.path.basename(image_path)}': {e}")
     finally:
-        # Clean up the temporary raster file
-        if os.path.exists(temp_raster_path):
-            os.remove(temp_raster_path)
+        # The temporary raster file is intentionally not deleted as per user request.
+        pass
 
 def process_single_file():
     """Handles the logic for processing a single image file."""

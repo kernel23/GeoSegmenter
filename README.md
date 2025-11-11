@@ -168,3 +168,5 @@ The script will offer two processing modes:
     *   The path to the folder where all the generated world files should be saved.
 
 The script will then use `gdal_translate` to create a world file for each image in the folder. It will notify you if GDAL encounters any errors (e.g., if an image is not georeferenced).
+
+**Note:** The script works by generating a temporary TIFF file (e.g., `my_image_temp_output.tif`) in the output directory, which `gdal_translate` uses to create the world file. As requested, this temporary raster file is **not** deleted after the process is complete.
