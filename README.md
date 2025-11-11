@@ -133,3 +133,33 @@ earthengine authenticate
 ## Author & Copyright
 
 Copyright © 2024 K.Tanaval
+
+---
+
+## `create_tfw.py` Script
+
+This script automatically generates a `.tfw` world file for a given orthomosaic image. This is useful for creating georeferencing files without needing to open a GIS application.
+
+### Dependencies
+
+- Python 3
+- rasterio
+
+Install the required dependency with:
+```bash
+pip install rasterio
+```
+
+### Usage
+
+The script requires the path to the image and the geographic coordinates of its top-left and bottom-right corners.
+
+```bash
+python create_tfw.py <image_path> <top_left_x> <top_left_y> <bottom_right_x> <bottom_right_y>
+```
+
+### Example
+
+```bash
+python create_tfw.py path/to/your/ortho.tif 34.0 -118.0 35.0 -117.0
+```
