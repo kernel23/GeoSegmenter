@@ -1,8 +1,8 @@
-import argparse
+import os
 import rasterio
 from rasterio.transform import from_bounds
 
-def create_tfw(image_path, top_left_x, top_left_y, bottom_right_x, bottom_right_y):
+def create_tfw(image_path, top_left_x, top_left_y, bottom_right_x, bottom_right_y, output_dir):
     """
     Generates a .tfw world file for a given orthomosaic image.
 
@@ -12,6 +12,7 @@ def create_tfw(image_path, top_left_x, top_left_y, bottom_right_x, bottom_right_
         top_left_y (float): The y-coordinate of the top-left corner.
         bottom_right_x (float): The x-coordinate of the bottom-right corner.
         bottom_right_y (float): The y-coordinate of the bottom-right corner.
+        output_dir (str): The directory where the .tfw file will be saved.
     """
     try:
         with rasterio.open(image_path) as src:
@@ -31,17 +32,18 @@ def create_tfw(image_path, top_left_x, top_left_y, bottom_right_x, bottom_right_
         )
 
         # Determine the .tfw file path
-        base, ext = image_path.rsplit('.', 1)
-        if ext.lower() == 'tif' or ext.lower() == 'tiff':
+        base, ext = os.path.basename(image_path).rsplit('.', 1)
+        if ext.lower() in ('tif', 'tiff'):
             tfw_ext = 'tfw'
-        elif ext.lower() == 'jpg' or ext.lower() == 'jpeg':
+        elif ext.lower() in ('jpg', 'jpeg'):
             tfw_ext = 'jgw'
         elif ext.lower() == 'png':
             tfw_ext = 'pgw'
         else:
             tfw_ext = 'wld'
 
-        tfw_path = f"{base}.{tfw_ext}"
+        tfw_filename = f"{base}.{tfw_ext}"
+        tfw_path = os.path.join(output_dir, tfw_filename)
 
         with open(tfw_path, 'w') as f:
             f.write(tfw_content)
@@ -52,13 +54,11 @@ def create_tfw(image_path, top_left_x, top_left_y, bottom_right_x, bottom_right_
         print(f"Error: {e}")
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Generate a .tfw world file for an orthomosaic image.')
-    parser.add_argument('image_path', type=str, help='Path to the orthomosaic image file.')
-    parser.add_argument('top_left_x', type=float, help='X-coordinate of the top-left corner.')
-    parser.add_argument('top_left_y', type=float, help='Y-coordinate of the top-left corner.')
-    parser.add_argument('bottom_right_x', type=float, help='X-coordinate of the bottom-right corner.')
-    parser.add_argument('bottom_right_y', type=float, help='Y-coordinate of the bottom-right corner.')
+    image_path = input("Enter the full path to the orthomosaic image: ")
+    top_left_x = float(input("Enter the X-coordinate of the top-left corner: "))
+    top_left_y = float(input("Enter the Y-coordinate of the top-left corner: "))
+    bottom_right_x = float(input("Enter the X-coordinate of the bottom-right corner: "))
+    bottom_right_y = float(input("Enter the Y-coordinate of the bottom-right corner: "))
+    output_dir = input("Enter the directory to save the .tfw file: ")
 
-    args = parser.parse_args()
-
-    create_tfw(args.image_path, args.top_left_x, args.top_left_y, args.bottom_right_x, args.bottom_right_y)
+    create_tfw(image_path, top_left_x, top_left_y, bottom_right_x, bottom_right_y, output_dir)

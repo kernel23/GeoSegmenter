@@ -152,14 +152,16 @@ pip install rasterio
 
 ### Usage
 
-The script requires the path to the image and the geographic coordinates of its top-left and bottom-right corners.
+To run the script, simply execute it from your terminal. It will interactively prompt you for all the necessary information.
 
 ```bash
-python create_tfw.py <image_path> <top_left_x> <top_left_y> <bottom_right_x> <bottom_right_y>
+python create_tfw.py
 ```
 
-### Example
+### Example Usage
 
-```bash
-python create_tfw.py path/to/your/ortho.tif 34.0 -118.0 35.0 -117.0
-```
+When you run the script, it will ask for the following details:
+- The full path to the orthomosaic image.
+- The X and Y coordinates for the top-left corner.
+- The X and Y coordinates for the bottom-right corner.
+- The directory where you want to save the generated world file.
