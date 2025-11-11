@@ -138,7 +138,7 @@ Copyright © 2024 K.Tanaval
 
 ## `create_tfw.py` Script
 
-This script automatically generates a `.tfw` world file for a given orthomosaic image. This is useful for creating georeferencing files without needing to open a GIS application.
+This script automatically generates a world file (e.g., `.tfw`) by extracting the existing georeferencing information from a raster file like a GeoTIFF.
 
 ### Dependencies
 
@@ -152,16 +152,14 @@ pip install rasterio
 
 ### Usage
 
-To run the script, simply execute it from your terminal. It will interactively prompt you for all the necessary information.
+Run the script from your terminal. It will interactively prompt you for the input and output paths.
 
 ```bash
 python create_tfw.py
 ```
 
-### Example Usage
+The script will ask for two things:
+1.  The full path to your georeferenced image (e.g., a GeoTIFF).
+2.  The directory where you want to save the generated world file.
 
-When you run the script, it will ask for the following details:
-- The full path to the orthomosaic image.
-- The X and Y coordinates for the top-left corner.
-- The X and Y coordinates for the bottom-right corner.
-- The directory where you want to save the generated world file.
+The script will then read the image's metadata and create the corresponding `.tfw`, `.jgw`, etc., file for you. If the image is not georeferenced, it will notify you.
