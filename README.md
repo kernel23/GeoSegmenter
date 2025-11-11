@@ -152,14 +152,20 @@ pip install rasterio
 
 ### Usage
 
-Run the script from your terminal. It will interactively prompt you for the input and output paths.
+Run the script from your terminal to launch the main menu.
 
 ```bash
 python create_tfw.py
 ```
 
-The script will ask for two things:
-1.  The full path to your georeferenced image (e.g., a GeoTIFF).
-2.  The directory where you want to save the generated world file.
+The script will offer two processing modes:
 
-The script will then read the image's metadata and create the corresponding `.tfw`, `.jgw`, etc., file for you. If the image is not georeferenced, it will notify you.
+1.  **Single File Mode**: Choose this to process one image at a time. The script will ask for:
+    *   The full path to your georeferenced image (e.g., a GeoTIFF).
+    *   The directory where you want to save the generated world file.
+
+2.  **Batch Folder Mode**: Choose this to process all TIFF images in a specific folder. The script will ask for:
+    *   The path to the folder containing your `.tif` or `.tiff` images.
+    *   The path to the folder where all the generated world files should be saved.
+
+The script will then automatically read each image's metadata and create the corresponding `.tfw` file in the specified output location. It will skip any images that are not georeferenced.
